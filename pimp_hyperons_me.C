@@ -19,11 +19,11 @@ void pimp_hyperons_me(){
 
 ///---------------	KATY	----------------------
   TH1F * hist_2_p = new TH1F ("mom_p","mom p",500,0,1500);
-  TH1F * hist_2_pi_min1 = new TH1F ("mom_pi_min1","mom pi min 1",500,0,1500);
-  TH1F * hist_2_pi_min2 = new TH1F ("mom_pi_min2","mom pi min 2",500,0,1500);
-  TH1F * hist_2_pi_plus = new TH1F ("mom_pi_plus","mom pi plus",500,0,1500);
-  TH1F * hist_2_kaon = new TH1F ("mom_kaon","mom kaon",500,0,1500);
-  TH1F * hist_2_lambda = new TH1F ("mom_lambda","mom lambda",500,0,1500);
+  TH1F * hist_2_pi_min1 = new TH1F ("mom_pi_min1","mom pi min 1",500,0,500);
+  TH1F * hist_2_pi_min2 = new TH1F ("mom_pi_min2","mom pi min 2",500,0,1000);
+  TH1F * hist_2_pi_plus = new TH1F ("mom_pi_plus","mom pi plus",500,0,1000);
+  TH1F * hist_2_kaon = new TH1F ("mom_kaon","mom kaon",500,0,1000);
+  TH1F * hist_2_lambda = new TH1F ("mom_lambda","mom lambda",500,300,1300);
 
 ///--------------	PEDY	-----------------------------
   TH1F * hist_1_p = new TH1F ("theta_proton","th p",500,0,80);
@@ -34,12 +34,12 @@ void pimp_hyperons_me(){
   TH1F * hist_1_lambda = new TH1F ("theta_lambda","lambda th",500,0,30);
 
 ///-------------	PEDY OD KATOW               ----------------------
-  TH1F * hist_3_p = new TH1F ("mom_prot","mom_prot",500,0,4500);
-  TH1F * hist_3_pi_min1 = new TH1F ("mom_th_pi_min1","mom(th) pion minus 1",500,0,1000);
+  TH1F * hist_3_p = new TH1F ("mom_th_prot","mom_prot",500,0,1100);
+  TH1F * hist_3_pi_min1 = new TH1F ("mom_th_pi_min1","mom(th) pion minus 1",500,0,400);
   TH1F * hist_3_pi_min2 = new TH1F ("mom_th_pi_min2","mom(th) pion minus 2",500,0,1000);
   TH1F * hist_3_pi_plus = new TH1F ("mom_th_pi_plus","mom(th) pion plus",500,0,1000);
   TH1F * hist_3_kaon = new TH1F ("mom_th_kaon", "mom(th) kaon",500,0,1000);
-  TH1F * hist_3_lambda = new TH1F ("mom_th_lambda","mom(th) lambda",500,0,1000);
+  TH1F * hist_3_lambda = new TH1F ("mom_th_lambda","mom(th) lambda",500,300,1000);
 
 //-------------		CM LAMBDA	---------------------------
   TH1F *hist_cms_mom_p = new TH1F("cms_mom_p", "CMS lambda mom p", 500, 0, 80);
@@ -54,15 +54,20 @@ void pimp_hyperons_me(){
   TH1F *hist_cms_th_pi_plus = new TH1F("cms_th_pi_plus", "CMS lambda th pi plus", 500, 0, 1500);
   TH1F *hist_cms_th_kaon = new TH1F("cms_th_kaon", "CMS lambda th kaon", 500, 0, 1500);
 
+//---------------	AKCEPTANCJA	----------------------------
+
+TH1F * hist_kaon_eff1 = new TH1F ("kaon_efficiency1","kaon efficiency1",500,0,1100);
+TH1F * hist_kaon_eff2 = new TH1F ("kaon_efficiency2","kaon efficiency2",500,0,1100);
+
  //############################################
   PReaction my_reaction2(1.16,"pi-","p","K0S [pi+ pi-] Lambda [p pi-]","pimp_test",1,0,1,1);
 
  
 
- my_reaction2.Do("thp = ([p]->Theta() * 180.)/TMath::Pi();");
- my_reaction2.Do("th_pion_min1 = ([pi-,1]->Theta() * 180.)/TMath::Pi();");
- my_reaction2.Do("th_pion_min2 = ([pi-,2]->Theta() * 180.)/TMath::Pi();");
- my_reaction2.Do("th_pion_plus = ([pi+]->Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_p = ([p]->Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_pi_min1 = ([pi-,1]->Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_pi_min2 = ([pi-,2]->Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_pi_plus = ([pi+]->Theta() * 180.)/TMath::Pi();");
  my_reaction2.Do("th_kaon = ([K0S]->Theta() * 180.)/TMath::Pi();");
  my_reaction2.Do("th_lambda = ([Lambda]->Theta() * 180.)/TMath::Pi();");
 
@@ -98,29 +103,29 @@ void pimp_hyperons_me(){
  my_reaction2.Do("mom_pi_plus_cms = pi_plus_cms.P()*1000.;");
  my_reaction2.Do("mom_kaon_cms = kaon_cms.P()*1000.;");
 
- my_reaction2.Do("thp_cms = (proton_cms.Theta() * 180.)/TMath::Pi();");
- my_reaction2.Do("th_pion_min1_cms = (pi_min1_cms.Theta() * 180.)/TMath::Pi();");
- my_reaction2.Do("th_pion_min2_cms = (pi_min2_cms.Theta() * 180.)/TMath::Pi();");
- my_reaction2.Do("th_pion_plus_cms = (pi_plus_cms.Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_p_cms = (proton_cms.Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_pi_min1_cms = (pi_min1_cms.Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_pi_min2_cms = (pi_min2_cms.Theta() * 180.)/TMath::Pi();");
+ my_reaction2.Do("th_pi_plus_cms = (pi_plus_cms.Theta() * 180.)/TMath::Pi();");
  my_reaction2.Do("th_kaon_cms = (kaon_cms.Theta() * 180.)/TMath::Pi();");
 
 //--------------------------------------------------------------------------------
 
 // ped od katow
- my_reaction2.Do(hist_3_p,"if thp>18 && thp<90;_x=mom_p;");
- my_reaction2.Do(hist_3_pi_min1,"if th_pion_min1>18 && th_pion_min1<90;_x=mom_pi_min1;");
- my_reaction2.Do(hist_3_pi_min2,"if th_pion_min2>18 && th_pion_min2<90;_x=mom_pi_min2;");
- my_reaction2.Do(hist_3_pi_plus,"if th_pion_plus>18 && th_pion_plus<90;_x=mom_pi_plus;");
+ my_reaction2.Do(hist_3_p,"if th_p>18 && th_p<90;_x=mom_p;");
+ my_reaction2.Do(hist_3_pi_min1,"if th_pi_min1>18 && th_pi_min1<90;_x=mom_pi_min1;");
+ my_reaction2.Do(hist_3_pi_min2,"if th_pi_min2>18 && th_pi_min2<90;_x=mom_pi_min2;");
+ my_reaction2.Do(hist_3_pi_plus,"if th_pi_plus>18 && th_pi_plus<90;_x=mom_pi_plus;");
  my_reaction2.Do(hist_3_kaon,"if th_kaon>18 && th_kaon<90;_x=mom_kaon;");
  my_reaction2.Do(hist_3_lambda,"if th_lambda>18 && th_lambda<90;_x=mom_lambda;");
 
 // katy
- my_reaction2.Do(hist_1_pi_min1,"_x=th_pion_min1;");
- my_reaction2.Do(hist_1_pi_min2,"_x=th_pion_min2;");
- my_reaction2.Do(hist_1_pi_plus,"_x=th_pion_plus;");
+ my_reaction2.Do(hist_1_pi_min1,"_x=th_pi_min1;");
+ my_reaction2.Do(hist_1_pi_min2,"_x=th_pi_min2;");
+ my_reaction2.Do(hist_1_pi_plus,"_x=th_pi_plus;");
  my_reaction2.Do(hist_1_kaon,"_x=th_kaon;");
  my_reaction2.Do(hist_1_lambda,"_x=th_lambda;");
- my_reaction2.Do(hist_1_p,"_x=thp;");
+ my_reaction2.Do(hist_1_p,"_x=th_p;");
 
 // pedy
  my_reaction2.Do(hist_2_pi_min1,"_x=mom_pi_min1;");
@@ -132,9 +137,9 @@ void pimp_hyperons_me(){
 
 // CMS 
  my_reaction2.Do(hist_cms_th_p, "_x = th_p_cms;");
- my_reaction2.Do(hist_cms_th_pi_min1, "_x = th_pion_min1_cms;");
- my_reaction2.Do(hist_cms_mom_pi_min2, "_x = mom_pi_min2_cms;");
- my_reaction2.Do(hist_cms_th_pi_plus, "_x = th_pion_plus_cms;");
+ my_reaction2.Do(hist_cms_th_pi_min1, "_x = th_pi_min1_cms;");
+ my_reaction2.Do(hist_cms_mom_pi_min2, "_x = th_pi_min2_cms;");
+ my_reaction2.Do(hist_cms_th_pi_plus, "_x = th_pi_plus_cms;");
  my_reaction2.Do(hist_cms_th_kaon, "_x = th_kaon_cms;");
 
  my_reaction2.Do(hist_cms_mom_p, "_x = mom_p_cms;");
@@ -143,9 +148,25 @@ void pimp_hyperons_me(){
  my_reaction2.Do(hist_cms_mom_pi_plus, "_x = mom_pi_plus_cms;");
  my_reaction2.Do(hist_cms_mom_kaon, "_x = mom_kaon_cms;"); 
 
+// double entries = hist_1_kaon->GetEntries();
+ my_reaction2.Do(hist_kaon_eff1, "if( (th_pi_min1 > 18 && th_pi_min1<90) && (th_pi_plus>18 && th_pi_plus<90) && (th_p>18 && th_p<90)); _x = mom_kaon;");
+ my_reaction2.Do(hist_kaon_eff2, "if ((th_pi_min1 > 18 && th_pi_min1<90) && (th_pi_plus>18 && th_pi_plus<90) && (th_pi_min2>18 && th_pi_min2<90)); _x = mom_kaon;");
+ 
+ //my_reactyion2.Do("entries_eff1 = hist_kaon_eff1->GetEntries();");
+ //my_reactyion2.Do("entries_eff2 = hist_kaon_eff2->GetEntries();");
+ 
+ //my_reactyion2.Do("eff_1 = hist_kaon_eff1->GetEntries() / 200000;");
+ //my_reactyion2.Do("eff_2 = hist_kaon_eff2->GetEntries() / 200000;");
+ 
+ my_reaction2.Do("eff_1 = 76598 / 200000;");
+ my_reaction2.Do("eff_2 = 84579 / 200000;");
+
+ //my_reaction2.Do("echo $eff_1;");
+ //my_reaction2.Do("echo $eff_2;");
+
  my_reaction2.Print();
  // my_reaction2.Loop(1000000);
- my_reaction2.Loop(10000);
+ my_reaction2.Loop(200000);
 
  //###########################################
 
@@ -182,6 +203,9 @@ void pimp_hyperons_me(){
  hist_cms_mom_pi_min2->Write();
  hist_cms_mom_pi_plus->Write();
  hist_cms_mom_kaon->Write();
+
+ hist_kaon_eff1->Write();
+ hist_kaon_eff2->Write();
 
  hist_cms_th_p->Write();
  hist_cms_th_pi_min1->Write();
