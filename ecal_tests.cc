@@ -172,7 +172,7 @@ Int_t ecal_tests(TString inputlist, TString outfile, TString eventsList, Int_t n
 
     
     const double beam_energy = 1170; //sqrt(p^2 +m^2)
-    const double beam_momentum = sqrt(beam_energy*beam_energy-mp*mp);
+    const double beam_momentum = sqrt(beam_energy*beam_energy-mpim*mpim);
 
     TLorentzVector proj(0,0,beam_momentum, beam_energy); //porusza sie wzdloz z
     TLorentzVector targ(0,0,0, mp); // x,y,z =0 spoczynek
@@ -405,7 +405,7 @@ Int_t ecal_tests(TString inputlist, TString outfile, TString eventsList, Int_t n
 		  if(mm_L>1170 && mm_L<1420)
 			{ //po masie lambdy robimy ciecie od 1150 do 1450 ogon z lewej to pi2-(?)
 			 
-			invM_kp = (lv_pip[j] + lv_pim[i] + lv_prot[1]).M(); //kaon z protonikie		  	
+			invM_kp = (lv_pip[j] + lv_pim[i] + lv_prot[1]).M(); //kaon z protonem??? po co?? :(	  	
 			hIM->Fill(invM_kp);
 
 				//if(invM_pipi > 480 && invM_pipi <520)
